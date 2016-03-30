@@ -52,7 +52,7 @@ public class GetImage {
 	static String dbname=null;
 	static String dbport=null;
 	static String dbip=null;
-	
+	static String trackerServer=null;
 	 static FastdfsFile zfile=null;//分布式系统文件
 	 
 	 static File f2=null;//图片文件
@@ -74,7 +74,7 @@ public class GetImage {
 		dbname=(String)map.get("dbname");
 		dbuser=(String)map.get("dbuser");
 		dbpass=(String) map.get("dbpass");
-		
+		trackerServer=(String)map.get("trackerServer");
 		localPath=(String)map.get("localPath");
 		File temp_fp = new File(localPath);
 		if (!temp_fp.exists()) {
@@ -134,7 +134,7 @@ public class GetImage {
 							os.write(bytes);
 							os.flush();
 							System.out.println("写文件到目录下成功");*/
-							bf.write("图片文件存在的file_id:"+file_id+"\r\n");
+							bf.write("图片文件存在的file_id---->"+file_id+"\r\n");
 							if(m==1000){
 								bf.flush();
 								m=0;
@@ -159,7 +159,7 @@ public class GetImage {
 						 
 						 System.out.println("====================END====================");
 						 System.out.println("");
-						 bf2.write("图片文件不存在的file_id:"+file_id+"\r\n");
+						 bf2.write("图片文件不存在的file_id---->"+file_id+"\r\n");
 						 if(n==1000){
 							 bf2.flush(); 
 							 n=0;
@@ -280,7 +280,7 @@ public class GetImage {
 		//HTTP访问服务的端口号    
 		ClientGlobal.setG_tracker_http_port(80);  
 		//Tracker服务器列表  
-		String trackerServer="192.168.60.203:22122";//获取所有的地址
+		//trackerServer="192.168.60.203:22122";//获取所有的地址
 		InetSocketAddress[] tracker_servers =null;
 			String [] serverStrings=trackerServer.split(",");
 			tracker_servers = new InetSocketAddress[serverStrings.length];
